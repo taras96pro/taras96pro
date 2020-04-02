@@ -1,0 +1,80 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cmath>
+#include<string>
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "ukr");
+	int choice;
+	while (true) {
+		cout << "1.Ввести данi\n2.Показати iнформацiю\n3.Закрити програму\n4.Очистити файл" << endl;
+		cin >> choice;
+		if (choice == 1) {
+			ofstream fileout;
+			fileout.open("Fileout.txt");
+
+			if (!fileout.is_open())
+			{
+				cout << "Помилка вiдкривання файлу!" << endl;
+			}
+			else
+			{
+				string name;
+				cout << "Введiть найменування спортклубу:" << endl;
+				cin >> name;
+				fileout << "Найменування спортклубу : ";
+				fileout << name << endl;
+
+
+				int visitors;
+				cout << "Введiть кiлькiсть вiдвiдувачiв за день:" << endl;
+				cin >> visitors;
+				fileout << "Кiлькiсть вiдвiдувачiв за день : ";
+				fileout << visitors << endl;
+
+				int price;
+				cout << "Введiть цiну рiчного абонементу:" << endl;
+				cin >> price;
+				fileout << "Цiна рiчного абонементу: ";
+				fileout << price << endl;
+
+				int profit;
+				profit = price * visitors;
+				fileout << "Прибуток за день: ";
+				fileout << profit << endl;
+			}
+
+			fileout.close();
+		}
+		
+
+
+
+
+else if (choice == 2) {
+			string line;
+			ifstream myfile("Fileout.txt");
+			if (myfile.is_open())
+			{
+				while (getline(myfile, line))
+				{
+					cout << line << '\n';
+				}
+				myfile.close();
+			}
+			else cout << "Unable to open file";
+		}
+		else if (choice == 3) {
+			break;
+		}
+		else {
+			std::ofstream ofs;
+			ofs.open("Fileout.txt", std::ofstream::out | std::ofstream::trunc);
+		}
+
+	}
+
+	return 0;
+}
